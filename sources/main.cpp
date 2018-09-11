@@ -2,18 +2,70 @@
 #include <GL/glew.h>
 #include <ctime>
 #include <cstdlib>
+#include <cstdio>
+#include <unistd.h>
 #include "display.h"
 #include "mesh.h"
 #include "shader.h"
 
-int main(){ 
-  unsigned int birds = 100;
+int main(int argc, char** argv){ 
+  unsigned int N;
+  float s, a, c;
 
+  //getopt
+  int ch;
+  opterr = 0;
+
+  if(argc <= 8){
+    std::cerr << "Se deben ingresar opciones (uso: -N <numero de pajaros> -s <peso separacion> -a <peso aceleracion> -c <peso cohesion>)" << std::endl;
+    exit(1);
+  }
+
+  while((ch = getopt(argc, argv, "N:s:a:c:")) != -1){
+		switch (ch) {
+			case 'N':
+				N = atoi(optarg);
+				break;
+			case 's':
+				s = atof(optarg);
+				break;
+			case 'a':
+				a = atof(optarg);
+				break;
+      case 'c':
+				c = atof(optarg);
+				break;
+			case '?':
+				if(optopt == 'N'){
+					std::cerr << "Opcion -N requiere un argumento." << std::endl;
+				}
+				else if(optopt == 's'){
+					std::cerr << "Opcion -s requiere un argumento." << std::endl;
+				}
+				else if(optopt == 'a'){
+					std::cerr << "Opcion -a requiere un argumento." << std::endl;
+				}
+        else if(optopt == 'c'){
+					std::cerr << "Opcion -c requiere un argumento." << std::endl;
+				}
+				else if (isprint(optopt)) {
+          std::cerr << "Opcion -" << (char)optopt << " desconocida." << std::endl;
+				}
+				else{
+          std::cerr << "Opcion desconocida." << std::endl;
+				}
+				exit(1);
+			default:
+				abort();
+		}
+	}
+
+  //Diplay with OpenGL
   Display display(640, 360, "SimuBird");
 
   Shader shader("./resources/ShaderFile");
 
-  unsigned int numVertices = birds*3;
+  unsigned int numVertices = N*3;
   Vertex vertices[numVertices];
   srand(time(NULL));
   float x, y;

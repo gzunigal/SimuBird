@@ -27,6 +27,7 @@
 *.lib
 
 # Executables
+simubird
 *.exe
 *.out
 *.app
