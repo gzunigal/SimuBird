@@ -22,43 +22,43 @@ int main(int argc, char** argv){
   }
 
   while((ch = getopt(argc, argv, "N:s:a:c:")) != -1){
-		switch (ch) {
-			case 'N':
-				N = atoi(optarg);
-				break;
-			case 's':
-				s = atof(optarg);
-				break;
-			case 'a':
-				a = atof(optarg);
-				break;
-      case 'c':
-				c = atof(optarg);
-				break;
-			case '?':
-				if(optopt == 'N'){
-					std::cerr << "Opcion -N requiere un argumento." << std::endl;
-				}
-				else if(optopt == 's'){
-					std::cerr << "Opcion -s requiere un argumento." << std::endl;
-				}
-				else if(optopt == 'a'){
-					std::cerr << "Opcion -a requiere un argumento." << std::endl;
-				}
-        else if(optopt == 'c'){
-					std::cerr << "Opcion -c requiere un argumento." << std::endl;
-				}
-				else if (isprint(optopt)) {
-          std::cerr << "Opcion -" << (char)optopt << " desconocida." << std::endl;
-				}
-				else{
-          std::cerr << "Opcion desconocida." << std::endl;
-				}
-				exit(1);
-			default:
-				abort();
-		}
+	switch (ch) {
+		case 'N':
+			N = atoi(optarg);
+			break;
+		case 's':
+			s = atof(optarg);
+			break;
+		case 'a':
+			a = atof(optarg);
+			break;
+      		case 'c':
+			c = atof(optarg);
+			break;
+		case '?':
+			if(optopt == 'N'){
+				std::cerr << "Opcion -N requiere un argumento." << std::endl;
+			}
+			else if(optopt == 's'){
+				std::cerr << "Opcion -s requiere un argumento." << std::endl;
+			}
+			else if(optopt == 'a'){
+				std::cerr << "Opcion -a requiere un argumento." << std::endl;
+			}
+        		else if(optopt == 'c'){
+				std::cerr << "Opcion -c requiere un argumento." << std::endl;
+			}
+			else if (isprint(optopt)) {
+			        std::cerr << "Opcion -" << (char)optopt << " desconocida." << std::endl;
+			}
+			else{
+				std::cerr << "Opcion desconocida." << std::endl;
+			}
+			exit(1);
+		default:
+			abort();
 	}
+  }
 
   //Diplay with OpenGL
   Display display(640, 360, "SimuBird");
