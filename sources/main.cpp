@@ -60,6 +60,8 @@ int main(int argc, char** argv){
 	}
   }
 
+	
+
   //Diplay with OpenGL
   Display display(640, 360, "SimuBird");
 

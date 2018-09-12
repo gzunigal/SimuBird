@@ -31,3 +31,6 @@ simubird
 *.exe
 *.out
 *.app
+
+# IDE
+/.vscode

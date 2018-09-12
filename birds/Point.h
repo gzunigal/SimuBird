@@ -2,17 +2,19 @@
 #define __AVE_H__ 1
 
 class Point{
+  public:
     float x;
     float y;
   
-  public:
-    Point(float x, float y): x(x), y(y){}
+    Point();
+    Point(float, float);
 
     float* getXY();
     Point operator+(Point);
     Point operator-(Point);
-    Point dist(Point)
-    Point mod()
-}
+    Point operator/(float);
+    float dist(Point);
+    float mod();
+};
 
 #endif
